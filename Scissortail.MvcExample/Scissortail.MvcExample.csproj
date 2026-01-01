@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- This is a hack until I can figure out how to make Nix and the
+    C# dynamic library loader play nice. -->
+    <Content Include="$(NIX_LIBS)">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Nerdbank.Streams" Version="2.13.16" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Scissortail\Scissortail.csproj" />
+    <PackageReference Include="Scissortail" Version="*" Condition=" '$(ContinuousIntegrationBuild)'=='true' "/>
+  </ItemGroup>
+
+</Project>
