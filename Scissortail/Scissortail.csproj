@@ -8,11 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <!-- This is a hack until I can figure out how to make Nix and the
-    C# dynamic library loader play nice. -->
-    <Content Include="$(NIX_LIBS)">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    <None Include="$(SCISSORTAIL_LIBTAILSCALE)" Pack="true" PackagePath="runtimes/any/native/libtailscale" />
   </ItemGroup>
 
   <ItemGroup>
